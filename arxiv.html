@@ -161,21 +161,21 @@ We can also look at the change in popularity of some key words/phrases over the 
 <br>
   <div class="row">
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="../static/folder/trend_nn_freq.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/trend_nn_freq.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
       </div>
 
   <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="../static/folder/trend_nn_inc_pct.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/trend_nn_inc_pct.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
       </div>
      </div>
 <br>
   <div class="row">
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="../static/folder/trend_bhole_freq.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/trend_bhole_freq.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
       </div>
 
   <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="../static/folder/trend_bhole_inc_pct.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/trend_bhole_inc_pct.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
       </div>
     </div>
 <br>
@@ -220,16 +220,16 @@ We can also look at the change in popularity of some key words/phrases over the 
             <p> Let's look at a few visualizations from the clustering algorithms to get more insights from the data.</p>
             <h3> Word Cloud </h3>
             <p>First let's take a look at the most frequent words in a couple of the clusters through wordclouds. This will help us label the 5 clusters.</p>
-            <img src="../static/folder/kmc_wordcloud.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/kmc_wordcloud.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
             <p> The two wordclouds above belong to the clusters from the <i>k</i>-means algorithm. Similar wordclouds can be made for all the other clusters for both algorithms. More details have been provided in the Python notebook in GitHub.</p>
             <h3> Cluster size </h3>
   <div class="row">
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="../static/folder/k_means_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/k_means_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
       </div>
 
   <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="../static/folder/lda_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/lda_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
       </div>
      </div>     
             <p>
@@ -237,12 +237,12 @@ We can also look at the change in popularity of some key words/phrases over the 
             </p>    
             <h3> Word Frequencies </h3>
             <p> Next, we can look at the number of occurences in each cluster of some of the most frequent words in the corpus. This visualization could suggest some additional stop words that we might want to add (and then reprocess the resulting new bag of words matrix) to make our clustering better. </p>
-            <img src="../static/folder/k_means_word_freq.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/k_means_word_freq.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
             <p> For example, dark matter 'halo' and 'halos' appear to be two different words. This indicates we must go back to the lemmatization step and replace all words 'halos' with 'halo'.</p>
             
             <h3> Low-dimensional representation </h3>
             <p> We can use PCA to project the high-dimensional vector representation of our text corpus into a lower-dimensional space. This could give us an indication of the separation or overlapping between the clusters.</p>
-            <img src="../static/folder/pca.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/pca.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
             <p> We see that some clusters, eg. Cluster 2 (green, 'Black Holes') and 3 (brown, 'Dark Matter') are reasonably well-defined: most of the documents belonging to these clusters lie along one axis. There is some overlap which is to be expected. There is some mixing in the other clusters, e.g. Clusters 1 (purple, 'Dark Energy') and 2 (green), possibly because of the limitation of the projection down into a two-dimensional space.</p>
       </div>
     </div>         
