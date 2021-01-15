@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Topic Modeling</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+<style>
+table, th, td {
+  border: 1px solid black;
+    text-align: center;
+}
+    tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+    
+<style>
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+</style>
+    
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+     <a class="navbar-brand" href="index.html">Saurabh Kumar's Blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="post.html">Sample Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/particles.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Topic Modeling of Research Publications</h1>
+            <h2 class="subheading">Viewing the research landscape</h2>
+            <span class="meta">Posted on
+              January 12, 2021</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <h2> About</h2>
+         <p>
+          This project is geared towards young researchers such as undergraduates motivated to pursue graduate school. Undergraduate research experience is a major factor in graduate admissions. However, as a beginner, it is extremely challenging for an undergrad to identify the broad research topics and the fastest growing areas in any field he/she is interested in. Moreover, simply going through publication databases isn't a viable solution: every year thousands of papers are published in every research area in physics!
+         </p>
+         <p>
+            This project attempts to answer some of these problems. I have identified and compared the buzzwords of two different years which gives us an indication of the rising trends in physics. Using topic modelling, I have identified broad research topics as well as sub-topics contained in them. An interested reader can not only get a clear view of the research landscape in any broad are in physics but also find out some of the specific questions that belong to any field.
+        </p>
+            <p>Visit my <a href="https://github.com/sxk1031/arxiv_topic_modeling"><u>GitHub</u></a> repository to understand the machine learning techniques implemented in this project.
+            </p>
+            <h2>Rising Trends in Physics</h2>
+<p>Using the <a href="https://arxiv.org">arXiv</a> database for physics, I have compared the buzzwords in all areas of physics between two different years, 2010 (on the left) and 2020 (on the right). To create this comparison, I analyzed ~7400 publication titles from 2010 and ~17,000 from 2020. We can see some emerging trends such as 'neural networks' and 'machine learning' as well as some topics that have stayed both stable and prolific over the years such as 'optics'. This is an indication that machine learning is gaining popularity in physics and is a very useful skill to possess. Notice that <strong>COVID</strong> was also talked about frequently by physicists in 2020. </p>
+    <div class="row justify-content-center">
+        <!-- Wordcloud 2010-->
+        <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+            <img src="../static/folder/2010_cloud.jpg" alt="" style="width:125%" style="padding-bottom:5em;"/>
+        </div>
+        <!-- Wordcloud 2020-->
+        <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+                <img src="../static/folder/2020_cloud.jpg" alt="" style="width:125%"/>
+        </div>
+    </div>
+<p> In 2010, the top 10 most used words were:
+<br>
+'dynamic',
+ 'quantum',
+ 'network',
+ 'optical',
+ 'plasma',
+ 'theory',
+ 'state',
+ 'simulation',
+ 'electron',
+ 'particle'
+</p>
+<p> In 2020, the top 10 most used words are:
+<br>
+'dynamic',
+ 'quantum',
+ 'network',
+ 'optical',
+ 'simulation',
+ 'flow',
+ 'COVID',
+ 'state',
+ 'Modeling',
+ 'Neural Network'
+</p>
+<h2>Most popular fields in Physics</h2>
+<p>
+A bar chart provided below compares the most active fields within physics between
+2010 and 2020. The numbers on the X-axis are the publication count. Comparing the 2010 and 2020 research trends, we see that the field of 'Optics' stayed
+the most active in a decade. In contrast, 'Applied Physics' has become more active recently whereas
+'Physics and Society' has become less popular since 2010.
+</p>
+    <div class="row justify-content-center">
+        <!-- Wordcloud 2010-->
+        <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+            <img src="../static/folder/2010_important_areas.jpg" alt="" style="width:125%" style="padding-bottom:5em;"/>
+        </div>
+        <!-- Wordcloud 2020-->
+        <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+                <img src="../static/folder/2020_important_areas.jpg" alt="" style="width:140%"/>
+        </div>
+    </div>
+            <br>
+<h2>Rising trends: a closer look</h2>
+            <p>
+We can also look at the change in popularity of some key words/phrases over the years. Plotted below are the frequency vs. year (on the left in blue) and percentage increase from the previous year vs. year (on the right in red) of two phrases, such as 'Neural Network' (top panel) and 'Black Hole' (bottom panel) for example. Neural networks has seen a steady increase in popularity over the years, especially in the year 2017. Black holes, on the other hand, gained popularity between 2015 and 2017 which could be due to the discovery of binary black hole mergers by LIGO in 2015.
+            </p>
+<br>
+  <div class="row">
+        <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+            <img src="../static/folder/trend_nn_freq.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
+      </div>
+
+  <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+            <img src="../static/folder/trend_nn_inc_pct.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
+      </div>
+     </div>
+<br>
+  <div class="row">
+        <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+            <img src="../static/folder/trend_bhole_freq.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
+      </div>
+
+  <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+            <img src="../static/folder/trend_bhole_inc_pct.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
+      </div>
+    </div>
+<br>
+<h2>Topic modeling </h2>
+<p>
+    For topic identification, I have implemented unsupervised machine learning algorithms such as <i>k</i>-means clustering and the Latent Dirichlet Allocation or LDA. In <i>k</i>-means clustering, each document is viewed as a multi-dimensional vector of the matrix. Two documents are similar to one another if their corresponding vectors are close to one another or, in other words, if the difference of their vectors is small in length. We can use this common clustering method to group our documents together to find topics of research in Astophysics (astro-ph). 
+    </p>
+    <p>
+    In LDA, each word in a document is assigned a topic. Initially, this assignment is done randomly. To improve upon the assignment of topics to each word, we look at the probability of a word, <i>w</i>, belonging to a particular topic, <i>t</i>. This is calculated by making a subsample of all documents that are classified as a particular topic <i>t</i> and the number of documents in that subsample that contains the word <i>w</i>. The LDA then goes through each document in the corpus and calculates the probability that a topic <i>t</i> is contained in a document <i>d</i>. These two probabilities assign a new probability to every word in the document of belonging to a topic. Repeating this process many times gives us an equilibrium value of the probabilities associated with each word and document.
+</p>
+<p>            
+            Below is a comparison of the sub-topics I identified using <i>k</i>-means clustering and LDA. I used 13,600 publication titles from the Astrophysics submissions of the year 2020.    
+            </p>           
+<table >
+  <tr>
+    <th><i>k</i>-means clustering</th>
+    <th>LDA</th>
+  </tr>
+  <tr>
+<td>Fast radio bursts, neutron stars</td>
+<td>Fast radio bursts, compact objects</td>
+</tr>
+<tr>    
+<td>Dark energy</td>
+<td>Supermassive black holes</td>
+</tr>
+<tr>    
+<td>Black holes</td>
+<td>Black holes and gravitational waves</td>
+</tr>
+<tr>    
+<td>Dark matter</td>
+<td>Primordial black holes</td>
+</tr>
+<tr>    
+<td>Star formation</td>
+<td>Dark energy</td>
+</tr>
+</table>
+<br>
+            <h2> Visualizations</h2> 
+            <p> Let's look at a few visualizations from the clustering algorithms to get more insights from the data.</p>
+            <h3> Word Cloud </h3>
+            <p>First let's take a look at the most frequent words in a couple of the clusters through wordclouds. This will help us label the 5 clusters.</p>
+            <img src="../static/folder/kmc_wordcloud.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <p> The two wordclouds above belong to the clusters from the <i>k</i>-means algorithm. Similar wordclouds can be made for all the other clusters for both algorithms. More details have been provided in the Python notebook in GitHub.</p>
+            <h3> Cluster size </h3>
+  <div class="row">
+        <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+            <img src="../static/folder/k_means_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+      </div>
+
+  <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+            <img src="../static/folder/lda_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+      </div>
+     </div>     
+            <p>
+                We see that in the <i>k</i>-means approach, <strong>Dark energy</strong> is the largest cluster. This seems to be consistent with my personal experience of going through the arXiv database in the past few years. On the other hand, the LDA returns <strong>Primordial black holes</strong> as the largest cluster which seems a bit unintuitive. This perhaps points to the need for better word vectorization in the LDA approach. Since the cluster sizes of the <i>k</i>-means approach are reasonable, we will look only at the <i>k</i>-means approach below.    
+            </p>    
+            <h3> Word Frequencies </h3>
+            <p> Next, we can look at the number of occurences in each cluster of some of the most frequent words in the corpus. This visualization could suggest some additional stop words that we might want to add (and then reprocess the resulting new bag of words matrix) to make our clustering better. </p>
+            <img src="../static/folder/k_means_word_freq.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <p> For example, dark matter 'halo' and 'halos' appear to be two different words. This indicates we must go back to the lemmatization step and replace all words 'halos' with 'halo'.</p>
+            
+            <h3> Low-dimensional representation </h3>
+            <p> We can use PCA to project the high-dimensional vector representation of our text corpus into a lower-dimensional space. This could give us an indication of the separation or overlapping between the clusters.</p>
+            <img src="../static/folder/pca.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <p> We see that some clusters, eg. Cluster 2 (green, 'Black Holes') and 3 (brown, 'Dark Matter') are reasonably well-defined: most of the documents belonging to these clusters lie along one axis. There is some overlap which is to be expected. There is some mixing in the other clusters, e.g. Clusters 1 (purple, 'Dark Energy') and 2 (green), possibly because of the limitation of the projection down into a two-dimensional space.</p>
+      </div>
+    </div>         
+  </article>
+    
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="https://github.com/sxk1031/arxiv_topic_modeling">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
