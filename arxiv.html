@@ -95,16 +95,18 @@ p {
         </p>
             <p>Visit my <a href="https://github.com/sxk1031/arxiv_topic_modeling"><u>GitHub</u></a> repository to understand the machine learning techniques implemented in this project.
             </p>
+            <h1> Exploratory Data Analysis </h1>
+            
             <h2>Rising Trends in Physics</h2>
-<p>Using the <a href="https://arxiv.org">arXiv</a> database for physics, I have compared the buzzwords in all areas of physics between two different years, 2010 (on the left) and 2020 (on the right). To create this comparison, I analyzed ~7400 publication titles from 2010 and ~17,000 from 2020. We can see some emerging trends such as 'neural networks' and 'machine learning' as well as some topics that have stayed both stable and prolific over the years such as 'optics'. This is an indication that machine learning is gaining popularity in physics and is a very useful skill to possess. Notice that <strong>COVID</strong> was also talked about frequently by physicists in 2020. </p>
+<p>Using the <a href="https://arxiv.org">arXiv</a> database for physics, I have compared the buzzwords in all areas of physics between two different years, 2010 (on the left) and 2020 (on the right). To create this comparison, I analyzed ~7400 publication titles from 2010 and ~17,000 from 2020. We can see some emerging trends such as 'neural networks' and 'machine learning' as well as some topics that have stayed both stable and prolific over the years such as 'optics'. This is an indication that machine learning is gaining popularity in physics and is a very useful skill to possess. Notice that <strong>COVID</strong> was also talked about frequently by physicists in 2020. 'Neural Network' can be seen as an emerging technique in 2020, unheard of ten years ago.</p>
     <div class="row justify-content-center">
         <!-- Wordcloud 2010-->
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="../static/folder/2010_cloud.jpg" alt="" style="width:125%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/2010_cloud.jpg" alt="" style="width:125%" style="padding-bottom:5em;"/>
         </div>
         <!-- Wordcloud 2020-->
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-                <img src="../static/folder/2020_cloud.jpg" alt="" style="width:125%"/>
+                <img src="./static/folder/2020_cloud.jpg" alt="" style="width:125%"/>
         </div>
     </div>
 <p> In 2010, the top 10 most used words were:
@@ -136,21 +138,21 @@ p {
 <h2>Most popular fields in Physics</h2>
 <p>
 A bar chart provided below compares the most active fields within physics between
-2010 and 2020. The numbers on the X-axis are the publication count. Comparing the 2010 and 2020 research trends, we see that the field of 'Optics' stayed
-the most active in a decade. In contrast, 'Applied Physics' has become more active recently whereas
-'Physics and Society' has become less popular since 2010.
+2010 and 2020. The numbers on the X-axis are the publication count. Comparing the 2010 and 2020 research trends, we see that the field of 'Optics' stayed the most active in a decade. In contrast, 'Applied Physics' has become more active recently whereas 'Physics and Society' has become less popular since 2010.
 </p>
     <div class="row justify-content-center">
         <!-- Wordcloud 2010-->
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="../static/folder/2010_important_areas.jpg" alt="" style="width:125%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/2010_important_areas.jpg" alt="" style="width:125%" style="padding-bottom:5em;"/>
         </div>
         <!-- Wordcloud 2020-->
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-                <img src="../static/folder/2020_important_areas.jpg" alt="" style="width:140%"/>
+                <img src="./static/folder/2020_important_areas.jpg" alt="" style="width:140%"/>
         </div>
     </div>
             <br>
+<p> Also notice that even in a given field, for example Optics, the total number of publications has grown almost by a factor of three. Physics as an entire discipline is growing with every decade, more papers being published every year.  
+            </p>            
 <h2>Rising trends: a closer look</h2>
             <p>
 We can also look at the change in popularity of some key words/phrases over the years. Plotted below are the frequency vs. year (on the left in blue) and percentage increase from the previous year vs. year (on the right in red) of two phrases, such as 'Neural Network' (top panel) and 'Black Hole' (bottom panel) for example. Neural networks has seen a steady increase in popularity over the years, especially in the year 2017. Black holes, on the other hand, gained popularity between 2015 and 2017 which could be due to the discovery of binary black hole mergers by LIGO in 2015.
@@ -176,7 +178,11 @@ We can also look at the change in popularity of some key words/phrases over the 
       </div>
     </div>
 <br>
-<h2>Topic modeling </h2>
+            <h2> Concluding Remarks</h2>
+            <p> So far we looked at some Exploratory Data Analysis results. We identified some new techniques such as 'Neural Networks' that are gaining traction in physics. For a motivated undergrad, having some experience in such techniques could play a vital role in graduate admissions decisions. One could also analyze the change in popularity of certain terms over the years. For instance, 'Black Holes' suddenly started to trend in 2015. Identifying such suddenly rising trends could point to some groundbreaking discoveries/publications worth being aware about. Finally, one could examine which are the most stable fields over the years, perhaps indicating that the field is vibrant and full of mysteries.   
+            </p>
+            
+<h1>Topic modeling </h1>
 <p>
     For topic identification, I have implemented unsupervised machine learning algorithms such as <i>k</i>-means clustering and the Latent Dirichlet Allocation or LDA. In <i>k</i>-means clustering, each document is viewed as a multi-dimensional vector of the matrix. Two documents are similar to one another if their corresponding vectors are close to one another or, in other words, if the difference of their vectors is small in length. We can use this common clustering method to group our documents together to find topics of research in Astophysics (astro-ph). 
     </p>
@@ -241,6 +247,9 @@ We can also look at the change in popularity of some key words/phrases over the 
             <p> We can use PCA to project the high-dimensional vector representation of our text corpus into a lower-dimensional space. This could give us an indication of the separation or overlapping between the clusters.</p>
             <img src="./static/folder/pca.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
             <p> We see that some clusters, eg. Cluster 2 (green, 'Black Holes') and 3 (brown, 'Dark Matter') are reasonably well-defined: most of the documents belonging to these clusters lie along one axis. There is some overlap which is to be expected. There is some mixing in the other clusters, e.g. Clusters 1 (purple, 'Dark Energy') and 2 (green), possibly because of the limitation of the projection down into a two-dimensional space.</p>
+            
+            <h2> Concluding Remarks </h2>
+            <p> We saw that in a broad field such as Astrophysics, there are some distinct sub topics: black holes, dark energy, dark matter, fast radio bursts, neutron stars and star formation. One can select one topic and look at it more closely by looking at the publications for this topic. We also identified the most prolific topic within astrophysics - Dark energy indicating how exciting and important the problem is. </p>
       </div>
     </div>         
   </article>
