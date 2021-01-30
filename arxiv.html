@@ -65,7 +65,7 @@ p {
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/particles.jpg')">
+  <header class="masthead" style="background-image: url('./static/folder/arxiv/2020_cloud.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -102,11 +102,11 @@ p {
     <div class="row justify-content-center">
         <!-- Wordcloud 2010-->
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="./static/folder/2010_cloud.jpg" alt="" style="width:125%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/arxiv/2010_cloud.jpg" alt="" style="width:125%" style="padding-bottom:5em;"/>
         </div>
         <!-- Wordcloud 2020-->
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-                <img src="./static/folder/2020_cloud.jpg" alt="" style="width:125%"/>
+                <img src="./static/folder/arxiv/2020_cloud.jpg" alt="" style="width:125%"/>
         </div>
     </div>
 <p> In 2010, the top 10 most used words were:
@@ -143,11 +143,11 @@ A bar chart provided below compares the most active fields within physics betwee
     <div class="row justify-content-center">
         <!-- Wordcloud 2010-->
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="./static/folder/2010_important_areas.jpg" alt="" style="width:125%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/arxiv/2010_important_areas.jpg" alt="" style="width:125%" style="padding-bottom:5em;"/>
         </div>
         <!-- Wordcloud 2020-->
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-                <img src="./static/folder/2020_important_areas.jpg" alt="" style="width:140%"/>
+                <img src="./static/folder/arxiv/2020_important_areas.jpg" alt="" style="width:140%"/>
         </div>
     </div>
             <br>
@@ -160,27 +160,31 @@ We can also look at the change in popularity of some key words/phrases over the 
 <br>
   <div class="row">
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="./static/folder/trend_nn_freq.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/arxiv/trend_nn_freq.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
       </div>
 
   <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="./static/folder/trend_nn_inc_pct.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/arxiv/trend_nn_inc_pct.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
       </div>
      </div>
 <br>
   <div class="row">
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="./static/folder/trend_bhole_freq.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/arxiv/trend_bhole_freq.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
       </div>
 
   <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="./static/folder/trend_bhole_inc_pct.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/arxiv/trend_bhole_inc_pct.jpg" alt="" style="width:110%" style="padding-bottom:5em;"/>
       </div>
     </div>
 <br>
             <h2> Concluding Remarks</h2>
-            <p> So far we looked at some Exploratory Data Analysis results. We identified some new techniques such as 'Neural Networks' that are gaining traction in physics. For a motivated undergrad, having some experience in such techniques could play a vital role in graduate admissions decisions. One could also analyze the change in popularity of certain terms over the years. For instance, 'Black Holes' suddenly started to trend in 2015. Identifying such suddenly rising trends could point to some groundbreaking discoveries/publications worth being aware about. Finally, one could examine which are the most stable fields over the years, perhaps indicating that the field is vibrant and full of mysteries.   
-            </p>
+            So far we looked at some Exploratory Data Analysis results.
+            <ol> 
+                <li> We identified some new techniques such as 'Neural Networks' that are gaining traction in physics. For a motivated undergrad, having some experience in such techniques could play a vital role in graduate admissions decisions. </li>
+                <li> One could also analyze the change in popularity of certain terms over the years. For instance, 'Black Holes' suddenly started to trend in 2015. Identifying such suddenly rising trends could point to some groundbreaking discoveries/publications worth being aware about. </li>
+                <li> Finally, one could examine which are the most stable fields over the years, perhaps indicating that the field is vibrant and full of mysteries.</li>   
+            </ol>
             
 <h1>Topic modeling </h1>
 <p>
@@ -223,16 +227,16 @@ We can also look at the change in popularity of some key words/phrases over the 
             <p> Let's look at a few visualizations from the clustering algorithms to get more insights from the data.</p>
             <h3> Word Cloud </h3>
             <p>First let's take a look at the most frequent words in a couple of the clusters through wordclouds. This will help us label the 5 clusters.</p>
-            <img src="./static/folder/kmc_wordcloud.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/arxiv/kmc_wordcloud.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
             <p> The two wordclouds above belong to the clusters from the <i>k</i>-means algorithm. Similar wordclouds can be made for all the other clusters for both algorithms. More details have been provided in the Python notebook in GitHub.</p>
             <h3> Cluster size </h3>
   <div class="row">
         <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="./static/folder/k_means_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/arxiv/k_means_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
       </div>
 
   <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="./static/folder/lda_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/arxiv/lda_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
       </div>
      </div>     
             <p>
@@ -240,16 +244,20 @@ We can also look at the change in popularity of some key words/phrases over the 
             </p>    
             <h3> Word Frequencies </h3>
             <p> Next, we can look at the number of occurences in each cluster of some of the most frequent words in the corpus. This visualization could suggest some additional stop words that we might want to add (and then reprocess the resulting new bag of words matrix) to make our clustering better. </p>
-            <img src="./static/folder/k_means_word_freq.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/arxiv/k_means_word_freq.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
             <p> For example, dark matter 'halo' and 'halos' appear to be two different words. This indicates we must go back to the lemmatization step and replace all words 'halos' with 'halo'.</p>
             
             <h3> Low-dimensional representation </h3>
             <p> We can use PCA to project the high-dimensional vector representation of our text corpus into a lower-dimensional space. This could give us an indication of the separation or overlapping between the clusters.</p>
-            <img src="./static/folder/pca.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/arxiv/pca.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
             <p> We see that some clusters, eg. Cluster 2 (green, 'Black Holes') and 3 (brown, 'Dark Matter') are reasonably well-defined: most of the documents belonging to these clusters lie along one axis. There is some overlap which is to be expected. There is some mixing in the other clusters, e.g. Clusters 1 (purple, 'Dark Energy') and 2 (green), possibly because of the limitation of the projection down into a two-dimensional space.</p>
             
             <h2> Concluding Remarks </h2>
-            <p> We saw that in a broad field such as Astrophysics, there are some distinct sub topics: black holes, dark energy, dark matter, fast radio bursts, neutron stars and star formation. One can select one topic and look at it more closely by looking at the publications for this topic. We also identified the most prolific topic within astrophysics - Dark energy indicating how exciting and important the problem is. </p>
+            <ol> 
+                <li> We saw that in a broad field such as Astrophysics, there are some distinct sub topics: black holes, dark energy, dark matter, fast radio bursts, neutron stars and star formation. One can select one topic and look at it more closely by looking at the publications for this topic.</li> 
+                    
+                <li>We also identified the most prolific topic within astrophysics - Dark energy indicating how exciting and important the problem is. </li>
+            </ol>
       </div>
     </div>         
   </article>

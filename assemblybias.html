@@ -55,7 +55,7 @@ p {
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('./static/folder/DM_halo.jpeg')">
+  <header class="masthead" style="background-image: url('./static/folder/assemblyBias/DM_halo.jpeg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -78,16 +78,38 @@ p {
         <div class="col-lg-8 col-md-10 mx-auto">
             <h1> About</h1>
          <p>
-         This project aims to predict the occupancy of dark matter halos with a central and satellite galaxies. Shown below is an illustration of a dark matter halo: a spherical region in the universe which contains dark matter. The diffuse, bluish glow is the dark matter halo. The spiral galaxy in the center is a central galaxy. The smaller blue dots are sub-halos that contain the satellite galaxies of the central.
+         This project aims to predict the occupancy of dark matter halos with a central and satellite galaxies. Shown below is an illustration of a dark matter halo: a spherical region in the universe which contains dark matter. The diffuse, bluish glow is the dark matter halo. The spiral galaxy in the center is a central galaxy. The smaller blue dots are sub-halos that contain the satellite galaxies of the central galaxy.
+             <br>
+             For more technical details of the project, please visit my <a href="https://github.com/sxk1031/Assembly_Bias"><u>GitHub repository</u></a>.
          </p>
-            <img src='./static/folder/DM_halo.jpeg' style="width:100%">
+            <img src='./static/folder/assemblyBias/DM_halo.jpeg' style="width:100%">
          <p>
-             <h1> What are we trying to solve?</h1>
-            1. Given the properties of a dark matter halo and its environment, such as halo mass, rotational velocity, concentration, spin, etc., how well can one predict whether the halo will be occupied by a central galaxy.<br>
-2. Similarly, how well can halo properties and environment predict the number of satellite galaxies.<br>
-3. We are also interested in determining which halo properties are the most important when predicting the occupancies.<br>
-4. We compare the clustering of the original sample of galaxies and the machine learning predictions. Given a random galaxy in a location, clustering describes the probability that another galaxy will be found within a given distance.<br>
-5. We compare the assembly bias in the original sample and the ML predictions. Assembly bias is the level at which the assembly history of the galaxies affects their clustering.
+             <h1> Main Objective </h1>
+            <p> The most important goal of this project is:
+                <ol>
+                    <li> Classification: To predict the occupancy of the dark matter halo with a central galaxy. </li> 
+                    <li> Regression: To predict the number of satellite galaxies in a dark matter halo.</li>
+            </ol>
+            </p>
+            
+          <h1> Features </h1>
+          The features in this ML problem can be classified into 2 kinds:
+          <ol> <li> Halo features which describe the properties of the halo:</li>
+          <ol type="i"> 
+              <li> <i>M<sub>vir</sub></i> or Halo mass,</li>
+              <li> <i>V<sub>max</sub></i> or maximum circular velocity of the halo today,</li>
+              <li> <i>con</i> or halo concentration which characterizes the density profile of the halo,</li>
+              <li> <i>a<sub>05</sub></i> and <i>a<sub>08</sub></i> or the scale factor (related to the age of the unievrse) at which the halo reaches half and 80% of its current mass respectively,</li>
+              <li> <i>V<sub>peak</sub></i> or the maximum circular velocity in the history of the halo,</li>
+              <li> <i>z<sub>lastmerg</sub></i> and <i>z<sub>firstmerg</sub></i> or the redshift (related to the age of the universe) of last major merger and first major merger of the halo with another halo,</li>
+              <li> <i>mergnum</i> or the total number of major mergers.</li>
+          </ol>
+              <li> Environment features that describe the properties of the region surrounding the halo:</li>
+              <ol type="i">
+                  <li> <i>g1_25, g2_5, g5, g10</i> that describe the dark matter density field surrounding the halo. The numbers <i> 1_25, 2_5, 5, 10</i> denote the increasing radius of the region containing the halo, </li>
+                  <li> <i> alpha</i> or tidal anisotropy which descibes whether the halo lies in a filament or in a more isotropically distributed region of dark matter.</li>
+              </ol>
+          </ol>
         </p>
           <p> 
           <h1> Data Source </h1>
@@ -95,15 +117,105 @@ p {
           </p>
         <p>
         <h1> Machine Learning Pipeline </h1>
-        <img src='./static/folder/ml-pipeline.jpg' style="width:100%">      
+        <img src='./static/folder/assemblyBias/ml-pipeline.jpg' style="width:100%">  
+      <h2> Data Preparation</h2>
+      <p>
+        The data set contains 8.7 million dark matter halos each containing a central galaxy. The total number of satellite galaxies is 10.4 million. However, not all halos and galaxies are important to us. For centrals, we use a halo mass cut-off to eliminate all halos below a certain mass. It is uncertain that such low mass halos can host galaxies. The total number of halos for the classification problem comes down to 4.6 million. Furthermore, we are interested in galaxies above a certain mass range. After imposing a cutoff mass for galaxies, the halos contain a little less than 750,000 central galaxies. Similarly for satellites, the halos contain 500,000 satellite galaxies.</p>     
+      
+      <p> We then divide the data set into 80% for training set, 10% for validation set and 10% for test set.</p>
+      <h2> Exploratory Data Analysis</h2>
+      Let's look at the distributions of galaxy mass, halo mass, halo velocity and dark matter density or the environment.
+      <img src='./static/folder/assemblyBias/distribution.jpg' style="width:100%">
+      <p>
+      Notice that in the mass plots, smaller the mass (x-axes), more the number of galaxies (y-axes) which follows from the theory of structure formation in the universe - smaller mass objects form first which later condense into bigger objects in the universe. The small decrease in halo mass below mass of ~3 is probably an artefact of the limited resolution of the simulation. The halo velocity seems to follow a Gaussian distribution.</p>
+      <h2> Model selection </h2>
+      <p> For centrals, we start with the simplest model, Logistic Regression. We find that the <i>F<sub>1</sub></i> and <i>F<sub>2</sub></i> scores are 0.776 +/- 0.0004 and 0.776 +/- 0.0005 respectively. However, comparing the scores to the Random Forest Classifier which are 0.893 +/- 0.0002 and 0.892 +/- 0.0002 respectively, the random forest method clearly performs better. We therefore select random forest classifier as our final model.</p>
+    <p>
+        Similarly for satellites, we start with the simplest model first - regularized linear regression. Even though Stochastic Ridge regression does a good job in predicting the number of satellites (<i>R<sup>2</sup></i> score of 0.9 +/- 0.004), an inherent property of linear regression models is that they can predict negative values. Ordinarily, this may not be a problem but in our problem satellite number must be zero or above. Therefore, linear regression isn't well suited to our problem.
+<br>
+Random forests are a better choice since by construction they cannot give negative values for satellite numbers. Moreover, the performance measures are better than linear regression scores (<i>R<sup>2</sup></i> score of 0.932 +/- 0.0036). We therefore select the random forest algorithm for our problem.</p>
+
+            <p>
+      Note: An explanation of the random forest algorithm is out of the scope of this blog. Please see Section 2.2 of our paper for an introduction to random forests. 
         </p>
-      <p> 
-      <h1> Key results from ML</h1>
-      1. We find that halo-mass, mvir, is the most important feature in determining the number of satellites of a central galaxy. This is expected and confirms prior analytical studies.<br>
-2. For central galaxies though, we find that the maximum circular velocity of the halo, Vmax, is the most important feature in determining whether a halo will be occupied by a central galaxy or not. This is a novel result.<br>
-3. As shown in the notebook, we recover the HOD signal extremely well. The clustering signal was also recovered extremely well at the level of 99.8% for centrals and 99.6% for both centrals and satellites. Similarly, the GAB signal is recovered to 98% for centrals and centrals and satellites.
+      
+      <h2> Fine tuning the random forest </h2>
+      <p> We perform a grid search by varying the values of hyper-parameters - <i>n_estimators</i> or the number of decision trees in the forest, <i>min_samples_leaf</i> or the minimum number of samples in a node and <i>max_depth</i> or the decision tree depth. We use the 4-fold cross validation method to evaluate the <i>F<sub>1</sub></i> and <i>R<sup>2</sup></i> scores. For an illustration, we obtained the following contour plots which helped us select the best hyper-parameter values for centrals: 
+  <div class="row">
+        <div class="col-sm-20 col-sm-offset-1 col-lg-4">
+            <img src="./static/folder/assemblyBias/grid_max_depth_20_test_all_f1_80pct_cv.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+      </div>
+
+  <div class="col-sm-20 col-sm-offset-1 col-lg-4">
+            <img src="./static/folder/assemblyBias/grid_min_samples_leaf_10_test_all_f1_80pct_cv.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+      </div>
+      
+  <div class="col-sm-20 col-sm-offset-1 col-lg-4">
+            <img src="./static/folder/assemblyBias/grid_n_estimators_200_test_all_f1_80pct_cv.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+      </div>
+      
+      </div> 
+      <br> We therefore select (<i>n_estimators</i>, <i>min_samples_leaf</i>, <i>max_depth</i>) = (200, 10, 20) as the hyper-parameter values for the random forest classifier for central galaxies.
       </p>
-    More to follow soon...
+      <p>
+      Similarly for satellites, we obtained the following contour plots:
+        <div class="row">
+        <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+            <img src="./static/folder/assemblyBias/grid_max_depth_20_test_all_r2_80pct_cv.jpg" alt="" style="width:100%" style="padding-bottom:5em;"/>
+      </div>
+
+  <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+            <img src="./static/folder/assemblyBias/grid_n_estimators_200_test_all_r2_80pct_cv.jpg" alt="" style="width:100%" style="padding-bottom:5em;"/>
+      </div>
+     </div>
+      <br>
+      We select (<i>n_estimators</i>, <i>min_samples_leaf</i>, <i>max_depth</i>) = (200, 1, 20) as the hyper-parameter values for the random forest regressor for satellite galaxies.
+      </p>
+    <h2> Final results</h2>
+    <p>After fine tuning our models, we can see a few visualizations to check the performance of our model. For centrals, the confusion matrix will give us a clue of what fraction of halos which contained central galaxies (denoted by 1) were predicted to be unoccupied and vice-versa.
+        <img src="./static/folder/assemblyBias/confusion_all.jpg" alt="" style="width:50%" style="padding-bottom:5em;"/></p>
+    <p>For satellites, we can look at the direct comparision between the predicted number of satellites vs. the true number. We can also fit a straight line and calculate how far from 1 and 0 the slope and intercept of the line is respectively.<br> 
+    <img src="./static/folder/assemblyBias/pred_vs_true_all.jpg" alt="" style="width:50%" style="padding-bottom:5em;"/></p>
+    
+    <h2> Feature Importances</h2>
+    <p>
+    Let's look at what features decide the central galaxy occupancy the most.
+    <img src="./static/folder/assemblyBias/feature_imp_rfclass_200_20_10_cut.jpg" alt="" style="width:75%" style="padding-bottom:5em;"/>
+        </p>
+    <p>The top 3 features are: <i>V<sub>max</sub></i> or maximum circular velocity of the halo today, <i>z<sub>lastmerg</sub></i> or the time of last major merger, and <i>V<sub>peak</sub></i> or the maximum circular velocity in the history of the halo. However, we should check the level of correlation between the features before we can truely say if they are important. Let's look at the heatmap or correlation matrix of these features:
+    <img src="./static/folder/assemblyBias/heatmap_cent_rfclass_top.jpg" alt="" style="width:75%" style="padding-bottom:5em;"/>
+        <br> We see that <i>V<sub>max</sub></i> and <i>V<sub>peak</sub></i> are highly correlated. Therefore, we now conclude that the top 3 features are <i>V<sub>max</sub></i>, <i>z<sub>lastmerg</sub></i>, and <i>a<sub>05</sub></i> or the time at which the halo reached half its present mass.
+    </p>    
+    <p> <b>One of the most surprising results from the machine learning work was that halo environment isn't a crucial feature determining central occupancy unlike previous semi-analytical studies.</b></p> 
+    
+    <p> Let's check the feature importances and feature correlation for satellites.
+            <div class="row">
+        <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+            <img src="./static/folder/assemblyBias/feature_imp_rfreg_200_20_1_cut.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+      </div>
+
+  <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+            <img src="./static/folder/assemblyBias/heatmap_sat_rfreg_top.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+      </div>
+     </div>
+</p>
+    <p> For satellites, the top 3 features are: <i>M<sub>vir</sub></i> or halo mass, <i>g2_5</i> and <i>g1_25</i> that describe the dark matter density field surrounding the halo. We noticed that for satellites the environment is an important feature consistent with previous studies in this field.   
+    </p>
+
+<h2> Further Details</h2>
+<p> After determining the top features for both centrals and satellites, we simplified our ML model by oncly including the top, uncorrelated features. For centrals, we made another model woth the top and environment features. Predicting galaxies from the ML models isn't enough for cosmological studies. We compared the <i>clustering</i> of the predicted galaxies with the true clustering. The clustering signal is basically related to the probability of finding a galaxy at a certain distance from the origin. Additionally, we compare the <i>assembly bias</i> of the predictions and the true galaxies. Assembly bias is related to the extent to which the assembly or merger history of the galaxies affects the clustering of galaxies. </p>
+
+<p> For further discussion, please refer to our paper.</p>
+
+<h1> Conclusions</h1>
+<ol> <li> We used ML to predict the dark matter halo occupation with a central galaxy and the number of satellite galaxies of a central galaxy. For centrals, we can predict halos which contain central galaxies upto ~91% accuracy. On the other hand, for halos that don't contain centrals, we predict them by ~98% accuracy.</li>
+    <li> We predict satellite galaxies very well with <i>R<sup>2</sup></i> score of 0.932. </li>
+    <li> Important: We found that for central galaxies, environment wasn't important in determining halo occupation.</li>
+    <li> <b>Important: Our ML approach takes 10 CPU hours as compared to 15,000 hours by previous semi-analytical models. This is an improvement by a factor of 1500!</b></li>
+</ol>
+    </p>
+    
+    </p>
         </div>
       </div>
     </div>
