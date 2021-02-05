@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Covid-19 & Cleveland</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+<style>
+table, th, td {
+  border: 1px solid black;
+    text-align: center;
+}
+    tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+    
+<style>
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+</style>
+    
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+     <a class="navbar-brand" href="index.html">Saurabh Kumar's Blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('./static/folder/yelp_covid/yelp_cover.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1> The Impact of Pandemic on Cleveland Businesses</h1>
+            <h2 class="subheading"> Dissecting Covid-19's effects on business closures </h2>
+            <span class="meta">Posted on
+              February 02, 2021</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <h2> About</h2>
+            <p> In this project, I am taking a closer look at how the Covid-19 pandemic has affected businesses in Cleveland. Some of the questions I am trying to find answers to are:
+            </p>
+            <ol> 
+                <li> Are there locations in Cleveland where closures happened more than the usual rate? </li>
+                <li> What is common among these locations? </li>
+                <li> What kinds of businesses were the most affected? </li>
+                <li> Does popularity make businesses less vulnerable to closures? </li>
+                <li> Are low-rated restaurants more likely to be shut-down? </li>
+            </ol>
+            
+            <h2> Data Source </h2>
+            <p> I required a data set containing information about businesses, especially whether they were open, before the pandemic. The <a href="https://www.yelp.com/dataset"><u>Yelp public dataset</u></a> contains business details as of March 2020. In total it contains information of above 200,000 businesses in cities such as:             </p>
+
+                <table >
+  <tr>
+    <th>City</th>
+    <th># of Businesses</th>
+  </tr>
+  <tr>
+<td> Las Vegas </td>
+<td>31631</td>
+</tr>
+<tr>    
+<td>Toronto</td>
+<td>20366</td>
+</tr>
+<tr>    
+<td>Phoenix</td>
+<td>20171</td>
+</tr>
+<tr>    
+<td>Charlotte</td>
+<td>10422</td>
+</tr>
+<tr>    
+<td> Scottsdale</td>
+<td>9342</td></tr>
+<tr><td>...</td>
+<td>...</td></tr>
+<tr><td>Cleveland</td>
+<td>3857</td></tr>
+</table> 
+            
+            <p> Let's take a peek at the data.</p>    
+            <img src='./static/folder/yelp_covid/yelp_head.png' style="width:100%">
+            <p> For me the most important columns are: </p>
+            <ol> 
+                <li> business_id</li>
+                <li> postal_code </li>
+                <li> stars </li>
+                <li> review_count </li>
+                <li> is_open </li>
+                <li> categories </li>
+            </ol>
+            <p> In total, there were <b>3082 open businesses</b> in Cleveland as of March 2020. <p>
+            
+            <p>Next, I used the Yelp Fusion API to retrieve the latest information about each of these businesses. To get this information, I signed into my Yelp account and created an app with Yelp on the Manage App page. Then I got my API Key, which I used to call the Yelp API.</p>  
+            <p> I found that out of 3082 open businesses back in March 2020, <b> 131 shut-down (4.25%) </b>, 2929 are still open and there is no information on 22 businesses. </p>
+            
+            <h2> Key Insights from Data </h2>
+            <p>Let's see what we can understand about the closures.</p>
+            <h3> Cleveland divided into Neighborhoods</h3>
+            <p> Within Cleveland, there are 56 zip codes. 23 of these areas experienced closures. Let's focus on the top 10 locations with the most number of businesses. This is what the percentage of closures in these top-10 locations looks like:</p>
+            <img src='./static/folder/yelp_covid/zip_code.jpg' style="width:75%">
+            <p> Zip code <b> 44115 recorded nearly twice more closures</b> than the other areas. According to <a href="https://www.zipdatamaps.com/44115"><u>Zip Data</u></a> website, this is a <b>low median household income location</b>. Supplementing the zip codes from Yelp data with information on the Zip Data website is currently on my to-do list.</p>
+            
+            <h3> Business Types </h3>
+            <p> In Cleveland, there are about 500 different types of businesses. 85 of these businesses types (16.6%) experienced closures. Let's focus on the top 10 business types with the most number of shops. This is what the percentage of closures in the top-10 business types looks like:</p>
+            <img src='./static/folder/yelp_covid/btype.jpg' style="width:75%">
+            <p> I found that <b>coffee shops, bars, new American</b> restaurants experienced the most shutdowns. Interestingly, there are 48 hair salons in Cleveland but all of them remained resistant to shutdown.</p>
+            
+            <h3> Review Count </h3>
+            <p> Let's see if popularity of the business made it resistant to closures. Here I assumed that the popularity is directly related to the <code>review_count</code>. In Cleveland, the most popular business is a restaurant named Townhall with 1439 reviews (still open). Amongst the closed businesses, the most popular was Lola - a New American Wine Bar - with 1110 reviews. This is how the closure rate depends on popularity:</p> 
+            <img src='./static/folder/yelp_covid/review_count.jpg' style="width:75%">
+            <p> We can see something counter-intuitive emerge from the above plot: the more popular businesses experienced more closures. Let's break down the types of businesses in each of the 6 bins of popularity. Earlier we saw that Coffee shops, Bars and New American restaurants had the most shut downs. Is review count correlated to these highly vulnerable business types? In other words, are Coffee Shops, Bars and New American restaurants the most popular businesses?</p>
+            <img src='./static/folder/yelp_covid/review_count_btype.jpg' style="width:75%">
+            <p> This figure gives us more insights about the high rate of closures for popular businesses. The most popular businesses are also the ones which are more likely to shut down. </p>
+            <br>More to follow soon...
+      </div>
+    </div> 
+</div>
+  </article>
+    
+  <hr>
+
+  <!-- Footer -->
+   <!-- <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="https://github.com/sxk1031/arxiv_topic_modeling">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+              
+            <li class="list-inline-item">
+              <a href="https://www.linkedin.com/in/saurabhkumar3400/">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>  
+              
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Saurabh Kumar's Blog 2021</p>
+        </div>
+      </div>
+    </div>
+  </footer>-->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
