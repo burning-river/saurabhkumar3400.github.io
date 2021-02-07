@@ -98,7 +98,7 @@ p {
             </ol>
             
             <h2> Data Source </h2>
-            <p> I required a data set containing information about businesses, especially whether they were open, before the pandemic. The <a href="https://www.yelp.com/dataset"><u>Yelp public dataset</u></a> contains business details as of March 2020. In total it contains information of above 200,000 businesses in cities such as:             </p>
+            <p> I required a data set containing information about businesses, especially whether they were open before the pandemic. The <a href="https://www.yelp.com/dataset"><u>Yelp public dataset</u></a> contains business details as of March 2020. In total it contains information of above 200,000 businesses in cities such as:             </p>
 
                 <table >
   <tr>
@@ -161,10 +161,22 @@ p {
             <h3> Review Count </h3>
             <p> Let's see if popularity of the business made it resistant to closures. Here I assumed that the popularity is directly related to the <code>review_count</code>. In Cleveland, the most popular business is a restaurant named Townhall with 1439 reviews (still open). Amongst the closed businesses, the most popular was Lola - a New American Wine Bar - with 1110 reviews. This is how the closure rate depends on popularity:</p> 
             <img src='./static/folder/yelp_covid/review_count.jpg' style="width:75%">
-            <p> We can see something counter-intuitive emerge from the above plot: the more popular businesses experienced more closures. Let's break down the types of businesses in each of the 6 bins of popularity. Earlier we saw that Coffee shops, Bars and New American restaurants had the most shut downs. Is review count correlated to these highly vulnerable business types? In other words, are Coffee Shops, Bars and New American restaurants the most popular businesses?</p>
-            <img src='./static/folder/yelp_covid/review_count_btype.jpg' style="width:75%">
-            <p> This figure gives us more insights about the high rate of closures for popular businesses. The most popular businesses are also the ones which are more likely to shut down. </p>
-            <br>More to follow soon...
+            <p> We can see something counter-intuitive emerge from the above plot: the more popular businesses experienced more closures. Let's break down the types of businesses and zip codes in each of the 6 bins of popularity. Earlier we saw that Coffee shops/Bars/New American restaurants and businesses in Zip code 44115 had the most shut downs. Is review count correlated with these highly vulnerable business types? In other words, are Coffee Shops/Bars/New American restaurants the most popular businesses? Are the most popular businesses located in the worst affected area in Cleveland?</p>
+            <div class="row">
+                <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+                    <img src="./static/folder/yelp_covid/review_count_btype.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+                </div>
+
+                <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+                    <img src="./static/folder/yelp_covid/review_count_zip.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+                </div>
+            </div>
+            <p> We now get more insights about the high rate of closures for popular businesses. The most popular businesses are also the ones which are more likely to shut down. Additionally, a decent number of the most popular businesses (category 6) are in zip code 44115.</p>
+            
+            <h3> Star Ratings</h3>
+            <p>Let's see if low rated businesses closed more frequently than highly rated ones.</p>
+            <img src='./static/folder/yelp_covid/rating.jpg' style="width:75%">
+            <p> Notice the strange trend of increasing closures with increasing ratings from 1 star to 3 stars. I will leave this as an open question for now.</p>
       </div>
     </div> 
 </div>
