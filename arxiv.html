@@ -188,40 +188,38 @@ We can also look at the change in popularity of some key words/phrases over the 
             
 <h1>Topic modeling </h1>
 <p>
-    For topic identification, I have implemented unsupervised machine learning algorithms such as <i>k</i>-means clustering and the Latent Dirichlet Allocation or LDA. In <i>k</i>-means clustering, each document is viewed as a multi-dimensional vector of the matrix. Two documents are similar to one another if their corresponding vectors are close to one another or, in other words, if the difference of their vectors is small in length. We can use this common clustering method to group our documents together to find topics of research in Astophysics (astro-ph). 
+    For topic identification, I implemented unsupervised machine learning algorithms such as <i>k</i>-means clustering and the Latent Dirichlet Allocation or LDA. In <i>k</i>-means clustering, each document is viewed as a multi-dimensional vector of the matrix. Two documents are similar to one another if their corresponding vectors are close to one another or, in other words, if the difference of their vectors is small in length. We can use this common clustering method to group our documents together to find topics of research in Astophysics (astro-ph). 
     </p>
     <p>
     In LDA, each word in a document is assigned a topic. Initially, this assignment is done randomly. To improve upon the assignment of topics to each word, we look at the probability of a word, <i>w</i>, belonging to a particular topic, <i>t</i>. This is calculated by making a subsample of all documents that are classified as a particular topic <i>t</i> and the number of documents in that subsample that contains the word <i>w</i>. The LDA then goes through each document in the corpus and calculates the probability that a topic <i>t</i> is contained in a document <i>d</i>. These two probabilities assign a new probability to every word in the document of belonging to a topic. Repeating this process many times gives us an equilibrium value of the probabilities associated with each word and document.
 </p>
-<p>            
-            Below is a comparison of the sub-topics I identified using <i>k</i>-means clustering and LDA. I used 13,600 publication titles from the Astrophysics submissions of the year 2020.    
-            </p>           
+<p>         
+    Let us first begin with the simplest clustering algorithm, the <i>k</i>-means. After cleaning up the data, the <i>k</i>-means clusters can be labelled as:
+</p>           
+  <div class="row">
+        <div class="col-sm-20 col-sm-offset-1 col-lg-6">
 <table >
   <tr>
     <th><i>k</i>-means clustering</th>
-    <th>LDA</th>
   </tr>
   <tr>
-<td>Fast radio bursts, neutron stars</td>
-<td>Fast radio bursts, compact objects</td>
+<td>Stellar & Planetary physics</td>
 </tr>
 <tr>    
-<td>Dark energy</td>
-<td>Supermassive black holes</td>
+<td>Solar physics</td>
 </tr>
 <tr>    
-<td>Black holes</td>
-<td>Black holes and gravitational waves</td>
+<td>Gravitational waves and Neutron stars</td>
 </tr>
 <tr>    
-<td>Dark matter</td>
-<td>Primordial black holes</td>
+<td>Gravitational waves and Black holes</td>
 </tr>
 <tr>    
-<td>Star formation</td>
-<td>Dark energy</td>
+<td>Dark Matter</td>
 </tr>
 </table>
+</div>
+    </div>
 <br>
             <h2> Visualizations</h2> 
             <p> Let's look at a few visualizations from the clustering algorithms to get more insights from the data.</p>
@@ -230,33 +228,97 @@ We can also look at the change in popularity of some key words/phrases over the 
             <img src="./static/folder/arxiv/kmc_wordcloud.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
             <p> The two wordclouds above belong to the clusters from the <i>k</i>-means algorithm. Similar wordclouds can be made for all the other clusters for both algorithms. More details have been provided in the Python notebook in GitHub.</p>
             <h3> Cluster size </h3>
-  <div class="row">
-        <div class="col-sm-20 col-sm-offset-1 col-lg-6">
             <img src="./static/folder/arxiv/k_means_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
-      </div>
-
-  <div class="col-sm-20 col-sm-offset-1 col-lg-6">
-            <img src="./static/folder/arxiv/lda_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
-      </div>
-     </div>     
             <p>
-                We see that in the <i>k</i>-means approach, <strong>Dark energy</strong> is the largest cluster. This seems to be consistent with my personal experience of going through the arXiv database in the past few years. On the other hand, the LDA returns <strong>Primordial black holes</strong> as the largest cluster which seems a bit unintuitive. This perhaps points to the need for better word vectorization in the LDA approach. Since the cluster sizes of the <i>k</i>-means approach are reasonable, we will look only at the <i>k</i>-means approach below.    
+                We see that in the <i>k</i>-means approach, <strong>Stellar & Planetary physics</strong> is the largest cluster. This seems to be consistent with my personal experience of going through the arXiv database in the past few years. 
             </p>    
             <h3> Word Frequencies </h3>
             <p> Next, we can look at the number of occurences in each cluster of some of the most frequent words in the corpus. This visualization could suggest some additional stop words that we might want to add (and then reprocess the resulting new bag of words matrix) to make our clustering better. </p>
-            <img src="./static/folder/arxiv/k_means_word_freq.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
-            <p> For example, dark matter 'halo' and 'halos' appear to be two different words. This indicates we must go back to the lemmatization step and replace all words 'halos' with 'halo'.</p>
+            <img src="./static/folder/arxiv/k_means_word_freq_1.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <img src="./static/folder/arxiv/k_means_word_freq_2.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            
+            <h3> Number of Clusters </h3>
+            <p> To verify that 5 is a reasonable assumption of the number of clusters, let's look at the <i>inertia</i> plot. The inertia value on the y-axis is related to the average distance between the cluster center and the data points. The lower the inertia the better the number of clusters.</p>
+            <img src="./static/folder/arxiv/k_means_cluster_number.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <p>One can notice that the inertia marginally tapers at 4. The improvements in inertia become a little gradual beyond that value. Therfore, 5 is a good choice for the number of clusters.</p>
             
             <h3> Low-dimensional representation </h3>
             <p> We can use PCA to project the high-dimensional vector representation of our text corpus into a lower-dimensional space. This could give us an indication of the separation or overlapping between the clusters.</p>
             <img src="./static/folder/arxiv/pca.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
-            <p> We see that some clusters, eg. Cluster 2 (green, 'Black Holes') and 3 (brown, 'Dark Matter') are reasonably well-defined: most of the documents belonging to these clusters lie along one axis. There is some overlap which is to be expected. There is some mixing in the other clusters, e.g. Clusters 1 (purple, 'Dark Energy') and 2 (green), possibly because of the limitation of the projection down into a two-dimensional space.</p>
+            <p> We see that some clusters, eg. Cluster 3 (brown) and 4 (gray) are relatively well-defined: most of the documents belonging to these clusters lie along one axis. There is some mixing in the other clusters, e.g. Clusters 0 (blue) and 2 (green), possibly because of the limitation of the projection down into a two-dimensional space. Alternatively, this could also mean that there is overlap between the clusters. There is reason that this might be true because neutron stars are the end state of many stars. Therefore Cluster 0 (Stellar & Planetary physics) and Cluster 2 (Gravitational Waves and Neutron stars) are related.</p>
+                    
+            <h2> Latent Dirichlet Allocation or LDA </h2>
+            <p> One way to improve on our current clustering method is to predict the probability with which a document is assigned a cluster. LDA is one such algorithm which does that. After pre-processing the data and implementing the LDA algorithm from the <code>gensim</code> library, I arrived at the following topics:</p>
+              <div class="row">
+        <div class="col-sm-20 col-sm-offset-1 col-lg-6">
+<table >
+  <tr>
+    <th>LDA topics</th>
+  </tr>
+  <tr>
+<td>Observations from Hubble Space Telescope</td>
+</tr>
+<tr>    
+<td>Galactic center</td>
+</tr>
+<tr>    
+<td>Dark Matter & Baryons</td>
+</tr>
+<tr>    
+<td>Stellar Physics</td>
+</tr>
+<tr>    
+<td>Galaxy surveys & galactic physics</td>
+</tr>
+<tr>    
+<td>Gravitational wave sources</td>
+</tr>
+<tr>    
+<td>Cosmic Microwave Background or CMB</td>
+</tr>
+</table>
+</div>
+    </div>
+            <p> We will see in a moment why 7 is the appropriate number of clusters for LDA.</p>
+            <h3> Cluster Size</h3>
+            For the LDA, the cluster/topic sizes were:
+            <img src="./static/folder/arxiv/lda_cluster_size.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
             
+            <h3> Word Frequencies </h3>
+            <img src="./static/folder/arxiv/lda_word_freq_1.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            
+            <h3> Number of Topics: Coherence Score </h3>
+            <p> The coherence score captures the semantic information of the document by looking at the co-occurence of pairs of words in the document. It can take a value between -1 (worst) and 1 (best). I calculated the coherence scores for different number of topics. I then plotted the percentage improvement in the coherence score with increasing number of topics: </p>
+            <img src="./static/folder/arxiv/lda_coherence_improv.jpg" alt="" style="width:120%" style="padding-bottom:5em;"/>
+            <p> The biggest improvement in coherence score, 15%, occurs when the number of topics increases to four. However, from my experience, it seems like a low number. The next biggest improvement occurs when there are 7 topics. Therefore, the initial assumption of 7 topics turns out to be reasonable.</p>       
+            
+            <h2> Example </h2>
+                <p> Finally, let us take a look at an abstract/document from the database/corpus and compare the topics it was assigned to by the two different methods. </p>
+                <p><mark> We present an upgrade of the OGLE Collection of RR Lyrae stars in the
+                    Galactic bulge and disk. The size of our sample has been doubled and reached 78
+                    350 RR Lyr variables, of which 56 508 are fundamental-mode pulsators (RRab
+                    stars), 21 321 pulsate solely in the first-overtone (RRc stars), 458 are
+                    classical double-mode pulsators (RRd stars), and 63 are anomalous RRd variables
+                    (including five triple-mode pulsators). For all the newly identified RR Lyr
+                    stars, we publish time-series photometry obtained during the OGLE Galaxy
+                    Variability Survey.
+                    We present the spatial distribution of RR Lyr stars on the sky, provide a
+                    list of globular clusters hosting RR Lyr variables, and discuss the Petersen
+                    diagram for multimode pulsators. We find new RRd stars belonging to a compact
+                    group in the Petersen diagram (with period ratios P_1O/P_F = 0.74 and
+                    fundamental-mode periods P_F = 0.44 d) and we show that their spatial
+                                        distribution is roughly spherically symmetrical around the Milky Way center. </mark></p>
+            
+            <p> The <i>k</i>-means clustering method assigns the document to the <i>Stellar & Planetary physics</i> cluster. This is a fair result given that the abstract contains the term 'stars'. </p>
+            
+            <p> The one shortcoming of the <i>k</i>-means clustering method is that it strictly categorizes the documents. LDA is advantageous since it gives us the probabilities of the topics for each document. For the above abstract, the 2 top-most topics are <i>Galactic center</i> with probability of 0.75 and <i>Stellar Physics</i> with probability of 0.08.</p>
             <h2> Concluding Remarks </h2>
             <ol> 
-                <li> We saw that in a broad field such as Astrophysics, there are some distinct sub topics: black holes, dark energy, dark matter, fast radio bursts, neutron stars and star formation. One can select one topic and look at it more closely by looking at the publications for this topic.</li> 
-                    
-                <li>We also identified the most prolific topic within astrophysics - Dark energy indicating how exciting and important the problem is. </li>
+                <li> We saw that in a broad field such as Astrophysics, there are some distinct sub topics for example: stellar and planetary physics, gravitational waves, dark matter and cosmic microwave background. </li> 
+                
+                <li> For the <i>k</i>-means clustering, 5 is an appropriate number of clusters. For LDA, which takes into account the semantic structure of the text, the appropriate number of topics is 7.
+                
+                <li> We can also look at the multidisciplinary nature of the articles through LDA. </li>
             </ol>
       </div>
     </div>         
